@@ -97,6 +97,7 @@ public class TodoTrackerController {
             {
                 user = new User("joe", "qwert");
                 session.setAttribute("user", user);
+                users.save(user);//anything I want to save to DB I have to manually save to the db... like with this line
             }
             else
             {
@@ -105,11 +106,12 @@ public class TodoTrackerController {
                 //user = new User("joe", "qwert");
         }else if (userName.equals("joe") && password.equals("qwert"))
         {
-            user = new User("joe", "qwert");
+            //user = new User("joe", "qwert");
+            session.setAttribute("user", user);
         }
 //        if (!user.getName().equals("joe")) {
 //            //user = new User(userName, password);
-//            //users.save(user);
+
 //            throw new Exception("Incorrect username");
 //        }
 //        else if (!password.equals(user.getPassword())) {

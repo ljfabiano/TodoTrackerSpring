@@ -66,21 +66,12 @@ public class TodoTrackerController {
         return "redirect:/";
     }
 
-    @RequestMapping(path = "/searchByName", method = RequestMethod.GET)//get requests data from a specified resource
+    @RequestMapping(path = "/searchByName", method = RequestMethod.GET)//get requests data from a specified resource(the db?)
     public String queryGamesByName(Model model, String search) {
         System.out.println("Searching by ..." + search);
         List<Todo> todoList = todos.findByNameStartsWith(search);
         model.addAttribute("todos", todoList);
         return "home";
-    }
-
-    @RequestMapping(path = "/delete", method = RequestMethod.GET)
-    public String deleteTodo(Model model, Integer todoID) {
-        if (todoID != null) {
-            todos.delete(todoID);//delete is from CRUD
-        }
-
-        return "redirect:/";
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
@@ -126,6 +117,34 @@ public class TodoTrackerController {
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public String logout(HttpSession session) {
         session.invalidate();
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/delete", method = RequestMethod.GET)
+    public String deleteTodo(Model model, Integer todoID) {
+        if (todoID != null) {
+            todos.delete(todoID);//delete is from CRUD
+        }
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/toggle", method = RequestMethod.GET)
+    public String toggleTodo(Model model, Integer todoID) {
+        if (todoID != null) {
+            Todo todo = todos.findOne(todoID);
+            todo.isDone = !todo.isDone;
+            if(todo.isDone == true)
+            {
+                todo.name += "(Done!)";
+            }
+            else
+            {
+                todo.name = todo.name.substring(0, todo.name.length() - 7);
+            }
+            todos.save(todo);
+        }
+
         return "redirect:/";
     }
 

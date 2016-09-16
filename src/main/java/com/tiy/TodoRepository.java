@@ -17,4 +17,6 @@ public interface TodoRepository extends CrudRepository<Todo, Integer> {
 
     @Query("SELECT g FROM Todo g WHERE g.name LIKE ?1%")//we are not selecting from the table, but from the entity(Game and not Games(table))(also name is the java name rather than the sql deal)
     List<Todo> findByNameStartsWith(String name);
+
+
 }

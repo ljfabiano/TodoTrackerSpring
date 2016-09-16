@@ -33,11 +33,14 @@ Welcome, {{name}}!
     <button type="submit">Add Todo</button>
 </form>
 
+
 <ol>
     {{#todos}}
-    <li>{{name}} <a href="/delete?todoID={{id}}">delete</a></li>
+    <li>{{name}} <a href="/delete?todoID={{id}}">delete</a> <a href="/toggle?todoID={{id}}">toggle</a></li>
     {{/todos}}
 </ol>
+
+
 
 {{/user}}
 

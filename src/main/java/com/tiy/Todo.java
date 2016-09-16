@@ -18,6 +18,9 @@ public class Todo {
     @Column(nullable = false)
     String name;
 
+    @Column(nullable = false)
+    boolean isDone = false;
+
 //    @Column(nullable = false)
 //    String platform;
 //
@@ -32,10 +35,22 @@ public class Todo {
 
     public Todo(String name, User user) {
         this.name = name;
+        this.user = user;
+        //this.isDone = isDone;
 //        this.platform = platform;
 //        this.genre = genre;
 //        this.releaseYear = releaseYear;
+
+    }
+
+    public Todo(String name, User user, boolean isDone) {
+        this.name = name;
         this.user = user;
+        this.isDone = isDone;
+//        this.platform = platform;
+//        this.genre = genre;
+//        this.releaseYear = releaseYear;
+
     }
 }
 
